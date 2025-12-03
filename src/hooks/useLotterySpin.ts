@@ -11,7 +11,7 @@ const { SPIN_DURATION: DEFAULT_SPIN_DURATION, FINAL_NUMBERS: DEFAULT_FINAL_NUMBE
 
 export const useLotterySpin = ({
   spinDuration = DEFAULT_SPIN_DURATION,
-  finalNumbers = DEFAULT_FINAL_NUMBERS,
+  finalNumbers = [...DEFAULT_FINAL_NUMBERS],
   onComplete,
 }: UseLotterySpinOptions = {}) => {
   const [isSpinning, setIsSpinning] = useState(false);
@@ -24,9 +24,9 @@ export const useLotterySpin = ({
 
     setIsSpinning(true);
     setDisplayNumbers(Array(SLOT_COUNT).fill(0));
-    
+
     let completedCount = 0;
-    
+
     const checkCompletion = () => {
       completedCount++;
       if (completedCount === SLOT_COUNT) {
@@ -39,10 +39,10 @@ export const useLotterySpin = ({
     for (let i = 0; i < SLOT_COUNT; i++) {
       const slotIndex = i;
       const delay = i * STAGGER_DELAY;
-      
+
       setTimeout(() => {
         startTimeRefs.current[slotIndex] = Date.now();
-        
+
         const animate = () => {
           if (!startTimeRefs.current[slotIndex]) return;
 
