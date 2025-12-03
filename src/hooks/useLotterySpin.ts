@@ -26,14 +26,13 @@ export const useLotterySpin = ({
   const animationRefs = useRef<(number | null)[]>(Array(SLOT_COUNT).fill(null));
   const startTimeRefs = useRef<(number | null)[]>(Array(SLOT_COUNT).fill(null));
 
-  // Final numbers stored in a ref to avoid stale closures
+
   const finalNumbersRef = useRef<number[]>([...initialNumbers]);
 
   const startSpin = useCallback(
     (nextNumbers?: number[]) => {
       if (isSpinning) return;
 
-      // Determine target numbers
       const targetNumbers =
         nextNumbers && nextNumbers.length === SLOT_COUNT
           ? [...nextNumbers]
