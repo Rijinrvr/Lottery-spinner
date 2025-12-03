@@ -17,10 +17,11 @@ const LotterySpin: React.FC = () => {
     }, WIN_MESSAGE_DELAY);
   };
 
-  const { isSpinning, displayNumbers, startSpin, cleanup } = useLotterySpin({
-    finalNumbers: FINAL_NUMBERS,
-    onComplete: handleSpinComplete,
-  });
+const { isSpinning, displayNumbers, startSpin, cleanup } = useLotterySpin({
+  finalNumbers: [...FINAL_NUMBERS], 
+  onComplete: handleSpinComplete,
+});
+
 
   const handleSpin = () => {
     setShowWinMessage(false);
