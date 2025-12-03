@@ -1,0 +1,1 @@
+export { default as congratulationsImage } from "./congratulations.png";
